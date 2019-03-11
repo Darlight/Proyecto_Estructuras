@@ -6,15 +6,16 @@ InterpreteLISP.java
 Proposito:
  */
 
-public class InterpreteLISP{
+// Cambios recientes: Añadí formato de genérico
+public class InterpreteLISP<E>{
     //Unico atributo de la clase
-    private int resultado;
+    private E resultado;
 
     //Override del metodo de la interfaz Calculator
     //Recibe como parametros dos valores int y un string
     //Los valores int son los numero entre los cuales se realizara
     //la operacion. Y el valor string es el operador
-    public int Calculate(int num1, int num2, String op){
+    public E Calculate(E num1, E num2, String op){
         //Condicion para cada caso
         if (op == "+"){
             //Si es +, entonces suma
