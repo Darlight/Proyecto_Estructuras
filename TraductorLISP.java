@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.*;
 
 class TraductorLisp{
-    private String instrucciones = "";
-    private ArrayList<E> directorio;
+    
+
+
 }
