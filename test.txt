@@ -1,6 +1,6 @@
 ;Los comentarios son para que se guien no hay que implementarlos en su interprete
 (DEFUN factorial (num) 
-    ;Calcula el factorial de un nÃºmero (recursivamente)
+    ;Calcula el factorial de un número (recursivamente)
     (*
         (COND 
             ((= num 1) 1)
