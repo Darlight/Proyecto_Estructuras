@@ -2,20 +2,20 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Evaluador{
-    AList aL;
+    Arguments aL;//ArgumentList
 
     // Contructor 
     public Evaluador(){
-        aL = new AList();
+        aL = new Arguments();
     }
 
-    public SExpression eval(SExpression exp) throws customException{
+    public SExpression eval(SExpression exp) throws exceptionError{
       
 
         // Si la expression es un atom
         // Agarra los valores con signo
         if(exp.isAtom()){
-            if(exp.isT() || exp.isNil() || exp.isInteger()){
+            if(exp.isT() || exp.es_nil() || exp.isInteger()){
                 return exp;
             }
             else
@@ -24,35 +24,35 @@ public class Evaluador{
 
         // Chequea que tipo de funcion es
         else if(exp.car().isSymbol()){
-            SExpression c1 = exp.car();
-            SExpression c2 = exp.cdr();
-            String nombre_exp = c1.name;
+            SExpression car = exp.car();
+            SExpression cdr = exp.cdr();
+            String nombre_exp = car.name;
 
             if(nombre_exp.equals("QUOTE")){
                 // Retorna pos si tiene valores correctos
                 String error_en_consola = checkIfValidArgs("QUOTE", c2);
                 if(error_en_consola != null)
-                    throw new customException(error_en_consola, "Evaluacion Erronea");
+                    throw new exceptionError(error_en_consola, "Evaluacion Erronea");
                 else
-                    return c2.car();
+                    return cdr.car();
             }
             else if(nombre_exp.equals("COND")){
                 // Llama a COND
-                if(c2.isNil())
-                    throw new customException("Argumentos no encontrados. **", "Evaluacion");
-                return eval_con(c2);
+                if(cdr.isNil())
+                    throw new exceptionError("Argumentos no encontrados. **", "Evaluacion");
+                return eval_con(cdr);
             }
             else if(nombre_exp.equals("DEFUN")){
                 // Chequea si algo es una funcion o no
 
                 String error_en_consola = checkIfValidDefun(c2);
                 if(error_en_consola != null)
-                    throw new customException(error_en_consola, "Evaluacion");
+                    throw new exceptionError(error_en_consola, "Evaluacion");
 
                 // Chequea la validez de los argumentos
-                SExpression nombre_de_funcion = c2.car().car();
-                SExpression parametros_funcion = c2.car().cdr().car();
-                SExpression cuerpo_de_funcion = c2.cdr().car();
+                SExpression nombre_de_funcion = cdr.car().car();
+                SExpression parametros_funcion = cdr.car().cdr().car();
+                SExpression cuerpo_de_funcion = cdr.cdr().car();
                 Defun code_de_defun = new Defun(nombre_de_funcion.name, parametros_funcion, cuerpo_de_funcion);
                 // Add the function to DList
                 DList.addFunction(nombre_de_funcion.name, code_de_defun);
@@ -77,7 +77,7 @@ public class Evaluador{
     }
 
 
-    public SExpression eval_con(SExpression be) throws customException{
+    public SExpression eval_con(SExpression be) throws exceptionError{
         // Implementacion de eval_con
 
         if(be.isNil()){
@@ -100,7 +100,7 @@ public class Evaluador{
         }
     }
 
-    public SExpression evaluacion_list(SExpression list) throws customException{
+    public SExpression evaluacion_list(SExpression list) throws exceptionError{
         // Implementacion de evaluacion_list
         if(list.isNil())
             return SExpression.getTable("NIL");
@@ -110,14 +110,14 @@ public class Evaluador{
         return SExpression.cons(c1, c2);
     }
 
-    public SExpression apply(SExpression funcion_primaria, SExpression parametros_arg) throws customException{
+    public SExpression apply(SExpression funcion_primaria, SExpression parametros_arg) throws exceptionError{
 
 
         // Chequea si funcion_primaria tiene argumentos validos
         String nombre_funcion = funcion_primaria.name;
         String error_en_consola = checkIfValidArgs(nombre_funcion, parametros_arg);
         if(error_en_consola != null)
-            throw new customException(error_en_consola, "Evaluacion");
+            throw new exceptionError(error_en_consola, "Evaluacion");
 
         // Chequea donde esta el parametro principal
         if(nombre_funcion.equals("CAR"))
@@ -180,7 +180,7 @@ public class Evaluador{
 
             // If not in the DList, undefined funcion_primaria
             if(defun_arg == null)
-                throw new customException("Undefined funcion_primaria " + nombre_funcion + " . **", "Evaluacion");
+                throw new exceptionError("Undefined funcion_primaria " + nombre_funcion + " . **", "Evaluacion");
 
             // Agrega argumentos a AList
             aL.addPairs(nombre_funcion, defun_arg.parametros_1, aL.getArgumentsAsList(parametros_arg));

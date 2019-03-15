@@ -35,10 +35,10 @@ public class Arguments {
         ArrayList<SExpression> parametros = new ArrayList<>();
 
         while (!argumentos.es_nil()) {
-            SExpression car = argumentos.c1();
+            SExpression car = argumentos.car();
             if (!car.es_nil())
                 parametros.add(car);
-            argumentos = argumentos.c2();
+            argumentos = argumentos.cdr();
         }
         return parametros;
     }
