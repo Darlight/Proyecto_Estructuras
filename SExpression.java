@@ -11,7 +11,7 @@ public class SExpression {
 
 
     private boolean es_nil = false; // Null de LISP
-    private SExpression c1, c2; // Valores de ningun atom
+    private SExpression car, cdr; // Valores de ningun atom
 
     // Hashtable que contenga funciones y valores
     // En este caso se uso un map tipo Hashtable para poder determina diferentes tipos
@@ -31,7 +31,6 @@ public class SExpression {
     public boolean getIsNil(){
         return es_nil;
     }
-
     public void setValue(int newvalor){
         valor = newvalor;
     }
@@ -141,12 +140,12 @@ public class SExpression {
 
     }
 
-    public SExpression c1(){
-        return c1;
+    public SExpression car(){
+        return this.car;
     }
 
-    public SExpression c2(){
-        return c2;
+    public SExpression cdr(){
+        return this.cdr;
     }
 
     public boolean es_nil(){

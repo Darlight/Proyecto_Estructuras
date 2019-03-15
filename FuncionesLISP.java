@@ -18,7 +18,7 @@ public class FuncionesLISP{
     //Constructor
     public FuncionesLISP(String nombre, SExpression parametro, SExpression cuerpo) throws exceptionError{
         nombreFuncion = nombre;
-        parametros = parametro;
+        parametros = getListaParametros(parametro);
         cuerpoFuncion = cuerpo;
     }
 
@@ -28,9 +28,9 @@ public class FuncionesLISP{
         ArrayList<String> parametros = new ArrayList<String>();
 
         //Mientras los parametros no sean null
-        while(!parametros.isNil()){
+        while(!parametro.getIsNil()){
 
-            SExpressions car = parametros.car();
+            SExpression car = parametro.car();
 
             //Los parametros formales de la lista no pueden ser enteros
             if (car.isInteger()){
