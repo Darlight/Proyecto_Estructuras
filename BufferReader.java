@@ -7,7 +7,7 @@ BufferReader.java
 Proposito:
  */
 
-public class BufferedReaderExample {
+public class BufferReader {
     public static void main(String args[])throws Exception{
         FileReader fr = new FileReader("D:\\testout.txt");
         BufferedReader br = new BufferedReader(fr);

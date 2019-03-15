@@ -44,8 +44,6 @@ public class SExpression {
 
     int tipo_de_nodo =0; // Que tipo de nodo sera creado
     int valor=0; // Valor de atomos de enteros
-    boolean this.isNIL =false; // Null de LISP
-    String this.nombre = ""; // Valor de atomos simbolicos
     boolean isNIL =false; // Null de LISP
     String nombre = ""; // Valor de atomos simbolicos
     int tipo = 0;
