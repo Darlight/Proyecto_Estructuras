@@ -49,7 +49,7 @@ public class Evaluador{
                 if(error_en_consola != null)
                     throw new customException(error_en_consola, "Evaluacion");
 
-                // If all arguments are valid, create a Defun object with nombre_exp, params and body
+                // Chequea la validez de los argumentos
                 SExpression nombre_de_funcion = c2.car().car();
                 SExpression parametros_funcion = c2.car().cdr().car();
                 SExpression cuerpo_de_funcion = c2.cdr().car();
@@ -101,7 +101,7 @@ public class Evaluador{
     }
 
     public SExpression evaluacion_list(SExpression list) throws customException{
-        // This function implements evaluacion_list
+        // Implementacion de evaluacion_list
         if(list.isNil())
             return SExpression.getTable("NIL");
 
@@ -111,15 +111,15 @@ public class Evaluador{
     }
 
     public SExpression apply(SExpression funcion_primaria, SExpression parametros_arg) throws customException{
-        // This funcion_primaria applies appropriate funcion_primaria from arguments
 
-        // Check if funcion_primaria has valid arguments
+
+        // Chequea si funcion_primaria tiene argumentos validos
         String nombre_funcion = funcion_primaria.name;
         String error_en_consola = checkIfValidArgs(nombre_funcion, parametros_arg);
         if(error_en_consola != null)
             throw new customException(error_en_consola, "Evaluacion");
 
-        // Check if funcion_primaria is in a list of built-in functions
+        // Chequea donde esta el parametro principal
         if(nombre_funcion.equals("CAR"))
             return parametros_arg.car().car();
 
@@ -174,7 +174,7 @@ public class Evaluador{
                 return SExpression.getTable("NIL");
         }
 
-        // If not built-in, check if in the DList
+        // Chequea validacion de AList vs DList
         else{
             Defun defun_arg = DList.getFunction(nombre_funcion);
 
@@ -182,22 +182,22 @@ public class Evaluador{
             if(defun_arg == null)
                 throw new customException("Undefined funcion_primaria " + nombre_funcion + " . **", "Evaluacion");
 
-            // Add arguments to AList
+            // Agrega argumentos a AList
             aL.addPairs(nombre_funcion, defun_arg.parametros_1, aL.getArgumentsAsList(parametros_arg));
-            // Execute the funcion_primaria
+            // ejecuta funcion_primaria
             SExpression exp = eval(defun_arg.cuerpo_de_funcion);
-            // Remove the pairs from AList
+            // Quita de AList
             aL.destroyPairs(defun_arg.parametros_1);
             return exp;
         }
     }
 
-    // Helper function to check for valid arguments
+    // Chequea por argumentos ovalidos
 
     public String checkIfValidDefun(SExpression defun_arg){
         String error_en_consola = null;
 
-        // Function name
+        // Nombre de Funcion
         if(defun_arg.isNil())
             error_en_consola = "Function name and body cannot be null. **";
         else if(defun_arg.car().isNil())
@@ -305,7 +305,7 @@ public class Evaluador{
     }
 
     public int countArgs(SExpression exp){
-        // This function just counts number of arguments using car till NIL occurs
+        // CAR
         int contador = 0;
         while(!exp.isNil()){
             exp = exp.cdr();
