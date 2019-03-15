@@ -47,7 +47,7 @@ public class SExpression {
     int this.nodeType =0; // Que tipo de nodo sera creado
     int this.value=0; // Valor de atomos de enteros
     boolean this.isNIL =false; // Null de LISP
-    String this.name =""; // Valor de atomos simbolicos
+    String this.name = ""; // Valor de atomos simbolicos
     // Hashtable que contenga funciones y valores
     // En este caso se uso un map tipo Hashtable para poder determina diferentes tipos
     //de datos que se identificaran al momento de leer el archivo .txt

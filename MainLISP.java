@@ -28,7 +28,6 @@ Proposito:
             try {
                 FileReader fr = new FileReader(address);
                 BufferedReader br = new BufferedReader(fr);
-
                 String str;
                 while ((str = br.readLine) != null) {
                     out.println(str + "\n");
