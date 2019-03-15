@@ -1,6 +1,6 @@
 ;Los comentarios son para que se guien no hay que implementarlos en su interprete
 (DEFUN factorial (num) 
-    ;Calcula el factorial de un número (recursivamente)
+    ;Calcula el factorial de un numero (recursivamente)
     (*
         (COND 
             ((= num 1) 1)
@@ -23,7 +23,7 @@
     ; Recibe un maximo de puntos y devuelve cuantos pueden sacar si no han empezado
     (* 
         (+
-            (/ puntos 2) ; divido entre dos porque no van a terminar
+            (/ puntos 2) ; divido entre dos porque no van a a
             7 ; sumado el tiempo en dias que les queda a partir del viernes
         )
         (queTanBienLeCaigoADiego "Juanito") ; multiplicado por que tan bien me caen
