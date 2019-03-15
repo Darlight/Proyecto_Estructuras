@@ -1,9 +1,4 @@
-;Los comentarios son para que se guien no hay que implementarlos en su interprete
-(DEFUN factorial (num) 
-    ;Calcula el factorial de un numero (recursivamente)
-    (*
-        (COND 
-            ((= num 1) 1)
+(DEFUN factorial (num) (*(COND ((= num 1) 1)
             ; En la guia no dice pero pueden implementar T
             ; Se simplifica la siguiente linea:
             ; (T (factorial (- num 1)))

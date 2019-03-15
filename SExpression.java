@@ -44,8 +44,8 @@ public class SExpression {
         this.es_nil = newboolean;
     }
 
-    int this.tipo_de_nodo =0; // Que tipo de nodo sera creado
-    int this.valor=0; // Valor de atomos de enteros
+    int tipo_de_nodo =0; // Que tipo de nodo sera creado
+    int valor=0; // Valor de atomos de enteros
     boolean this.isNIL =false; // Null de LISP
     String this.nombre = ""; // Valor de atomos simbolicos
     // Hashtable que contenga funciones y valores
