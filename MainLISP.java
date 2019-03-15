@@ -1,5 +1,7 @@
 public class MainLISP {
-import java.util.Scanner
+import java.util.Scanner;
+import java.io.*;
+import static java.Lang.System.*;
 
 // TODO = SEARCH BUFFER READER - LIST - STRING
 /*
@@ -11,56 +13,43 @@ Proposito:
  */
 
     public static void main(String[] args) {
-        MainLisp tipo_1, tipo_2 = new MainLISP();
         Scanner s = new Scanner(System.in);
-        int choice = 3;
-        String operation_name = "0";
-        boolean status = false;
-        System.out.println("Que tipo de archivo esta tratando de leer? \n \n 1. Archivo .txt \n String");
-        choice = s.nextInt();
-        if (!(choice = 3)) {
-            status = true;
-            try {
-                while (status = true) {
-                    if (choice == 1) {
-                        System.out.println("Ha escogido el leer un archivo. Por favor, indique (Utilizando un path) donde esta el archivo: \n");
-                        String path = s.nextString();
-                        try {
-                            tipo_1(path);
-                        } catch (InvalidFileType e) {
-                            System.out.println("El archivo no es valido.");
-                        } finally {
-                            System.out.println("Cerrando programa.");
-                            status = false;
-                            exit();
-                        }
-                    }
-                    if (choice == 2) {
-                        System.out.println("Ha escogido el escribit un string. Escribalo a continuacion: \n\n");
-                        String operation_name = s.nextString();
-                        tipo_2(operation_name);
-                    }
+        System.out.print("Escoja una forma de dar los datos: \n \n 1. Por un archivo. \n 2. Por expresion aqui");
+        String choice = "";
+        // Carga de un archivo. Necesito ayuda haciendo que lo lea linea por linea.
+        if(choice == 1){
+            System.out.println(" Usted ha escogido por archivo. \n De la direccion de su archivo, empezando por su disco duro, \n y terminando en el nombre del archivo");
+            String address = s.nextString();
 
+            try{
+                FileReader fr = new FileReader(address);
+                BufferedReader br = new BufferedReader(fr);
+
+                String str;
+                while((str = br.readLine) != null){
+                    out.println(str + "\n");
                 }
 
-            } catch (InvalidChoice e) {
-                System.out.println("Opcion invalida.");
-            } finally {
-                exit();
+                br.close();
+
+            }
+            catch(IOException e){
+                System.out.println("No se pudo encontrar su archivo.");
             }
         }
-    }
+        // Carga mediante texto solamente
+        if(choice == 2){
+            while(scanner.hasNextLine()){
+                String linea = s.nextLine();
 
-    public void exit() {
-        status = false;
-    }
+                if(linea.equals("$$") || line.equals("$")){
+                    Parser p = new Parser();
+                    Evaluador e = new Evaluador();
 
-    public void tipo_1(String path) {
-        // Insert buffered file here
+                    
+                }
+            }
+        }
 
+        }
     }
-
-    public void tipo_2(String input) {
-        //Insert String reader here
-    }
-}
