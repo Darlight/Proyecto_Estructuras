@@ -6,6 +6,9 @@ FuncionesLISP.java
 Proposito:
  */
 
+import java.util.HashMap;
+import java.util.ArrayList;
+
 public class Funciones{
 
     String nombreFuncion;
