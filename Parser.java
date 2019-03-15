@@ -58,15 +58,52 @@ public class Parser {
     }
 
 
-    //FINISH THIS
+    //Finished it :3
     public SExpression parseCar(Tokenizer t, boolean s) throws customException {
         if(t.isLeftBrace()){
-            tokenizer.count++;
+            tokenizer.count++; //Ca
             t.skip();
 
             if(t.isRightBrace()){
                 t.skip();
+                return SExpression.getTable("NIL");
             }
+
+            SExpression c2 = parseCar(t, true);
+
+            if(t.hasMoreTokens()){
+                SExpression c0 = parseCdr(t, true);
+
+                return new SExpression(c1, c0);
+            }
+            return c2;
+        } else if (t.isRightBrace()) {
+            t.counter--;
+            if(seenLeftBrace){
+                t.skip();
+                return SExpression.getTable("NIL");
+            }
+            else{
+                System.out.println("RError");
+            }
+
         }
+        else if(t.isIdentifier()){
+            SExpression exp = t.getIdentifier();
+            return exp;
+        }
+
+        else if(t.isInteger()){
+            SExpression exp = t.getInteger();
+            return exp;
+        }
+
+        else {
+            System.out.println("Error");
+        }
+
+    }
+    else{
+        System.out.println("Error");
     }
 }
