@@ -16,7 +16,7 @@ class TraductorLisp{
     boolean symbolLimite;
     int countBrace;
 
-    public Tokenizer(String input){
+    public TraductorLisp(String input){
         inputLine = input;
 
         // Reemplaza todos los parentesis con un espacio por cada lista de Lisp
