@@ -17,21 +17,17 @@ public class Archivos {
             //Sinceramente, este pedazo de codigo fue visto en internet, pues
             //no se sabia como leer un archivo de texto, pero FUNCIONA
             BufferedReader bf = new BufferedReader(new FileReader(direccion));
-            String temp = "";
-            while (temp != null){
-                temp = bf.readLine();
-                if (temp == null){
-                    break;
-                }
-                System.out.println(temp);
-            }
-            /*
+            String temporal = "";
             String bfRead;
-            while((bfRead = bf.readLine()) != null){
-                temp = temp + bfRead;
+
+            //Hace el ciclo mientras bfRead contiene datos
+            while ((bfRead = bf.readLine()) != null){
+                //
+                temporal = temporal + bfRead;
             }
-            texto = temp;
-            */
+
+            texto = temporal;
+
         }catch(Exception e){
             //Si la direccion es incorrecta, entonces mostrara este mensaje
             System.err.println("No se encontro archivo");
