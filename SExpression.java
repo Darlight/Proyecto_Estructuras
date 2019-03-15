@@ -172,4 +172,35 @@ public class SExpression {
 
     }
 
+    public SExpression car(){
+        return this.car;
+    }
+
+    public SExpression cdr(){
+        return this.cdr;
+    }
+
+    public boolean isNil(){
+        return type == 2 && name.equals("NLL");
+    }
+
+    public boolena isT(){
+        return type == 2 && name.equals("T");
+    }
+
+    public boolean isAtom() {
+        return type != 3;
+    }
+
+    public boolena isInteger(){
+        return type == 1;
+    }
+
+    public boolean isSymbol(){
+        return type == 2;
+    }
+
+    public static SExpression cons(SExpression car, SExpression cdr){
+        return new SExpression(car, cdr);
+    }
 }

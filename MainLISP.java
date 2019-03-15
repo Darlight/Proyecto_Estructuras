@@ -17,64 +17,25 @@ Proposito:
         Scanner s = new Scanner(System.in);
 
         // Menú Principal
+        System.out.println("BIENVENIDO AL INTERPRETE DE LISP\n------------------------------------");
+        System.out.println("Para comenzar, por favor ingrese la direccion del archivo de texto");
+        System.out.println("Empezando por su disco duro y terminando en el nombre del archivo");
         System.out.print("Escoja una forma de dar los datos: \n \n 1. Por un archivo. \n 2. Por expresion aqui");
-        String choice = "";
-        String user_input = "";
-        // Carga de un archivo. Necesito ayuda haciendo que lo lea linea por linea.
-        if (choice == 1) {
-            System.out.println(" Usted ha escogido por archivo. \n De la direccion de su archivo, empezando por su disco duro, \n y terminando en el nombre del archivo");
-            String address = s.nextString();
 
-            try {
-                FileReader fr = new FileReader(address);
-                BufferedReader br = new BufferedReader(fr);
-                String str;
-                while ((str = br.readLine) != null) {
-                    out.println(str + "\n");
-                }
-
-                br.close();
-
-            } catch (IOException e) {
-                System.out.println("No se pudo encontrar su archivo.");
+        String adress = s.nextString();
+        try{
+            FileReader fr = new FileReader(adress);
+            BufferedReader br = new BufferedReader(fr);
+            String str;
+            while ((str = br.readLine) != null){
+                System.out.println(str + "\n");
             }
+            br.close();
+
+        } catch (IOException e){
+            System.out.println("No se puedo encontrar su archivo\nAsegurese de dar bien la direccion\nY que este se encuentre donde usted cree que esta");
         }
-        // Carga mediante texto solamente
-        if (choice == 2) {
-            while (scanner.hasNextLine()) {
-                String linea = s.nextLine();
 
-                if (linea.equals("$$") || line.equals("$")) {
-                    Parser p = new Parser();
-                    Evaluador e = new Evaluador();
-                    try {
-                        SExpression exp = p.parse(user_input);
-                        System.out.println("Notacion inicial: ");
-                        exp.printExpression();
-                        System.out.println("Resultado: ");
-                        SExpression result = evaluador.eval(exp);
-                        result.printSExpression();
-                    } catch (IOException e) {
-                        System.out.println("ERROR");
-                    }
-
-                    if (linea.equals("$$")) {
-                        System.out.println("Done");
-                        System.exit(0);
-                    }
-
-                    user_input = "";
-
-                    System.out.println("\n \n Reinicie el programa");
-
-
-                }
-                else{
-                    user_input = user_input + linea + "\n";
-                }
-
-            }
-        }
 
     }
 }
