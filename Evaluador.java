@@ -5,7 +5,7 @@ public class Evaluador{
     AList aL;
 
     // Contructor 
-    public Evaluator(){
+    public Evaluador(){
         aL = new AList();
     }
 

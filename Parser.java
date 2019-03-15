@@ -6,7 +6,7 @@ InterpreteLISP.java
 Proposito:
  */
 public class Parser {
-    public SExpression parse(String inputBuffer) throws customException {
+    public SExpression parse(String inputBuffer) throws exceptionError {
 
         if (inputBuffer.isEmptu()) {
             throw new customException("No valido. ");
@@ -23,7 +23,7 @@ public class Parser {
         }
     }
 
-    public SExpression parseCdr(Tokenizer t, boolean s) throws customException {
+    public SExpression parseCdr(Tokenizer t, boolean s) throws exceptionError {
         if (t.hasMoreTokens()) {
             if (t.isRightBrace()) {
                 t.skip();
@@ -56,7 +56,7 @@ public class Parser {
 
 
     //Finished it :3
-    public SExpression parseCar(Tokenizer t, boolean s) throws customException {
+    public SExpression parseCar(Tokenizer t, boolean s) throws exceptionError {
         if (t.isLeftBrace()) {
             tokenizer.count++; //Ca
             t.skip();
