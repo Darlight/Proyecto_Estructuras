@@ -9,11 +9,11 @@ Proposito:
 
 public class SExpression {
 
-    private int nodeType = 0; // Que tipo de nodo sera creado
-    private int value = 0; // Valor de atomos de enteros
-    private boolean isNil = false; // Null de LISP
-    private String name = ""; // Valor de atomos simbolicos
-    private SExpression car, cdr; // Valores de ningun atom
+    private int tipo_de_nodo = 0; // Que tipo de nodo sera creado
+    private int valor = 0; // Valor de atomos de enteros
+    private boolean es_nil = false; // Null de LISP
+    private String nombre = ""; // Valor de atomos simbolicos
+    private SExpression c1, c2; // Valores de ningun atom
 
     // Hashtable que contenga funciones y valores
     // En este caso se uso un map tipo Hashtable para poder determina diferentes tipos
@@ -22,38 +22,38 @@ public class SExpression {
     //Getters y Setters
 
     public int getNodeType(){
-        return this.nodeType;
+        return this.tipo_de_nodo;
     }
     public int getValue(){
-        return this.value;
+        return this.valor;
     }
     public String getName(){
-        return this.name;
+        return this.nombre;
     }
     public boolean getIsNil(){
-        return this.isNil;
+        return this.es_nil;
     }
 
-    public void setValue(int newvalue){
-        this.value = newvalue;
+    public void setValue(int newvalor){
+        this.valor = newvalor;
     }
-    public void setName(String newname){
-        this.name = newname;
+    public void setName(String newnombre){
+        this.nombre = newnombre;
     }
     public void setIsNil(boolean newboolean){
-        this.isNil = newboolean;
+        this.es_nil = newboolean;
     }
 
-    int this.nodeType =0; // Que tipo de nodo sera creado
-    int this.value=0; // Valor de atomos de enteros
+    int this.tipo_de_nodo =0; // Que tipo de nodo sera creado
+    int this.valor=0; // Valor de atomos de enteros
     boolean this.isNIL =false; // Null de LISP
-    String this.name = ""; // Valor de atomos simbolicos
+    String this.nombre = ""; // Valor de atomos simbolicos
     // Hashtable que contenga funciones y valores
     // En este caso se uso un map tipo Hashtable para poder determina diferentes tipos
     //de datos que se identificaran al momento de leer el archivo .txt
     public static HashMap<String, SExp> idValores = new HashMap<String, SExp>();
 
-    public static SExpression getFromTable(String Id){
+    public static SExpression getTable(String Id){
         if(idValores.containsKey(Id)){
             return idValores.get(Id);
         }
@@ -64,143 +64,143 @@ public class SExpression {
         }
     }
     // Crea S-Expressiones de tipo entero
-    public SExpression(int number){
-        this.nodeType = 1;
-        this.value = number;
+    public SExpression(int numero){
+        this.tipo_de_nodo = 1;
+        this.valor = numero;
     }
 
     //  Crea S-Expressiones de tipo string
-    public SExpression(String str){
-        this.nodeType = 2;
-        this.name = str;
+    public SExpression(String string_dependiente){
+        this.tipo_de_nodo = 2;
+        this.nombre = string_dependiente;
     }
     // S-Expression de ningun tipo de atom, solo reportan el valor inicial
-    // de una list --> car
-    // todos los valores exceptuando el primer elemento en una list --> cdr
-    public SExpression(SExpression car, SExpression cdr){
-        this.nodeType = 3;
-        this.car = car;
-        this.cdr = cdr;
+    // de una list --> c1
+    // todos los valores exceptuando el primer elemento en una list --> c2
+    public SExpression(SExpression c1, SExpression c2){
+        this.tipo_de_nodo = 3;
+        this.c1 = c1;
+        this.c2 = c2;
     }
     //Recibe como parametros dos expresiones S las funciones basicas de aritmetica
-    public static SExpression suma(SExpression SExp1, SExpression SExp2){
-        int valor = SExp1.getValue() + SExp2.getValue();
+    public static SExpression suma(SExpression exp1, SExpression exp2){
+        int valor = exp1.getValue() + exp2.getValue();
         return new SExpression(valor);
     }
 
-    public static SExpression resta(SExpression SExp1, SExpression SExp2){
-        int valor = SExp1.getValue() - SExp2.getValue();
+    public static SExpression resta(SExpression exp1, SExpression exp2){
+        int valor = exp1.getValue() - exp2.getValue();
         return new SExpression(valor);
     }
 
-    public static SExpression multiplicar(SExpression SExp1, SExpression SExp2){
-        int valor = SExp1.getValue() * SExp2.getValue();
+    public static SExpression multiplicar(SExpression exp1, SExpression exp2){
+        int valor = exp1.getValue() * exp2.getValue();
         return new SExpression(valor);
     }
 
-    public static SExpression dividir(SExpression SExp1, SExpression SExp2){
-        int valor = SExp1.getValue() / SExp2.getValue();
+    public static SExpression dividir(SExpression exp1, SExpression exp2){
+        int valor = exp1.getValue() / exp2.getValue();
         return new SExpression(valor);
     }
 
-    public static SExpression modulo(SExpression SExp1, SExpression SExp2){
-        int valor = SExp1.getValue() % SExp2.getValue();
+    public static SExpression modulo(SExpression exp1, SExpression exp2){
+        int valor = exp1.getValue() % exp2.getValue();
         return new SExpression(valor);
     }
     // Comparadores verificando sus valores
-    public static SExpression less(SExpression SExp1, SExpression SExp2){
-        if(SExp1.getValue() < SExp2.getValue())
-            return getFromTable("T");
+    public static SExpression less(SExpression exp1, SExpression exp2){
+        if(exp1.getValue() < exp2.getValue())
+            return getTable("T");
         else
-            return getFromTable("NIL");
+            return getTable("NIL");
 
-    public SExpression(int number) {
-        this.type = 1;
-        this.val = number;
+    public SExpression(int numero) {
+        this.tipo = 1;
+        this.val = numero;
     }
 
     //  Crea S-Expressiones de tipo string
-    public SExpression(String str) {
-        this.type = 2;
-        this.name = str;
+    public SExpression(String string_dependiente) {
+        this.tipo = 2;
+        this.nombre = string_dependiente;
     }
 
     //Recibe como parametros dos expresiones S las funciones basicas de aritmetica
-    public static SExpression suma(SExpression SExp1, SExpression SExp2) {
-        int addition = SExp1.val + SExp2.val;
-        return new SExpression(addition);
+    public static SExpression suma(SExpression exp1, SExpression exp2) {
+        int adicion = exp1.val + exp2.val;
+        return new SExpression(adicion);
     }
 
-    public static SExpression resta(SExpression SExp1, SExpression SExp2) {
-        int subtraction = SExp1.val - SExp2.val;
-        return new SExpression(subtraction);
+    public static SExpression resta(SExpression exp1, SExpression exp2) {
+        int resta_res = exp1.val - exp2.val;
+        return new SExpression(resta_res);
     }
 
-    public static SExpression multiplicar(SExpression SExp1, SExpression SExp2) {
-        int multiplication = SExp1.val * SExp2.val;
-        return new SExpression(multiplication);
+    public static SExpression multiplicar(SExpression exp1, SExpression exp2) {
+        int multi_res = exp1.val * exp2.val;
+        return new SExpression(multi_res);
     }
 
-    public static SExpression dividir(SExpression SExp1, SExpression SExp2) {
-        int quotient = SExp1.val / SExp2.val;
-        return new SExpression(quotient);
+    public static SExpression dividir(SExpression exp1, SExpression exp2) {
+        int cos_res = exp1.val / exp2.val;
+        return new SExpression(cos_res);
     }
 
-    public static SExpression modulo(SExpression SExp1, SExpression SExp2) {
-        int rem = SExp1.val % SExp2.val;
-        return new SExpression(rem);
+    public static SExpression modulo(SExpression exp1, SExpression exp2) {
+        int rem_res = exp1.val % exp2.val;
+        return new SExpression(rem_res);
     }
 
-    public static SExpression greater(SExpression SExp1, SExpression SExp2){
-        if(SExp1.getValue() > SExp2.getValue())
-            return getFromTable("T");
+    public static SExpression greater(SExpression exp1, SExpression exp2){
+        if(exp1.getValue() > exp2.getValue())
+            return getTable("T");
         else
-            return getFromTable("NIL");
+            return getTable("NIL");
     }
 
-    public static SExpression igual(SExpression SExp1, SExpression SExp2){
-        if(SExp1.getNodeType() != SExp2.getNodeType())
-            return getFromTable("NIL");
+    public static SExpression igual(SExpression exp1, SExpression exp2){
+        if(exp1.getNodeType() != exp2.getNodeType())
+            return getTable("NIL");
         else{
-            if(SExp1.getNodeType() == 1 && SExp1.getValue() == SExp2.getValue())
-                return getFromTable("T");
-            else if(SExp1.getValue() == 2 && SExp1.getName() == SExp2.getName())
-                return getFromTable("T");
+            if(exp1.getNodeType() == 1 && exp1.getValue() == exp2.getValue())
+                return getTable("T");
+            else if(exp1.getValue() == 2 && exp1.getName() == exp2.getName())
+                return getTable("T");
             else
-                return getFromTable("NIL");
+                return getTable("NIL");
         }
 
     }
 
-    public SExpression car(){
-        return this.car;
+    public SExpression c1(){
+        return this.c1;
     }
 
-    public SExpression cdr(){
-        return this.cdr;
+    public SExpression c2(){
+        return this.c2;
     }
 
-    public boolean isNil(){
-        return type == 2 && name.equals("NLL");
+    public boolean es_nil(){
+        return tipo == 2 && nombre.equals("NLL");
     }
 
     public boolena isT(){
-        return type == 2 && name.equals("T");
+        return tipo == 2 && nombre.equals("T");
     }
 
     public boolean isAtom() {
-        return type != 3;
+        return tipo != 3;
     }
 
     public boolena isInteger(){
-        return type == 1;
+        return tipo == 1;
     }
 
     public boolean isSymbol(){
-        return type == 2;
+        return tipo == 2;
     }
 
-    public static SExpression cons(SExpression car, SExpression cdr){
-        return new SExpression(car, cdr);
+    public static SExpression cons(SExpression c1, SExpression c2){
+        return new SExpression(c1, c2);
     }
 }
