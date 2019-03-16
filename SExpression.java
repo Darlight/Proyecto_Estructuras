@@ -93,8 +93,8 @@ public class SExpression {
     // todos los valores exceptuando el primer elemento en una list --> c2
     public SExpression(SExpression c1, SExpression c2){
         tipo_de_nodo = 3;
-        c1 = c1;
-        c2 = c2;
+        car = c1;
+        cdr = c2;
     }
     //Recibe como parametros dos expresiones S las funciones basicas de aritmetica
     public static SExpression suma(SExpression exp1, SExpression exp2){
