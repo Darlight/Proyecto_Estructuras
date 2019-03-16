@@ -66,6 +66,23 @@ public class SExpression {
         valor = numero;
     }
 
+    public String displayTree(){
+        String displayString = "";
+        if(tipo == 1){
+            displayString = displayString + Integer.toString(valor);
+        } else if (tipo == 2){
+            displayString = displayString + nombre;
+        } else {
+            displayString = displayString + "(" + car.displayTree() + " . " + cdr.displayTree() + ")";
+        }
+        return displayString;
+    }
+
+    public void printSExpression(){
+        String output = displayTree();
+        System.out.println("> " + output);
+    }
+
     //  Crea S-Expressiones de tipo string
     public SExpression(String string_dependiente){
         tipo_de_nodo = 2;
@@ -171,4 +188,6 @@ public class SExpression {
     public static SExpression cons(SExpression c1, SExpression c2){
         return new SExpression(c1, c2);
     }
+
+
 }
