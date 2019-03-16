@@ -1,5 +1,11 @@
 import java.io.*;
 
+/**
+ *
+ * Clase que se encarga de encontrar, leer y preparar
+ * archivos para que se use en el resto del programa.
+ *
+ */
 public class Archivos {
 
     //Metodo encargado de leer archivos de texto

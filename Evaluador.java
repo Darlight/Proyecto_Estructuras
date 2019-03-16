@@ -8,6 +8,13 @@ public class Evaluador {
         aL = new Arguments();
     }
 
+    /**
+     * Identifica, o "Evalúa" una expresión
+     *
+     * @param exp
+     * @return
+     * @throws exceptionError
+     */
     public SExpression eval(SExpression exp) throws exceptionError {
 
 
@@ -69,6 +76,13 @@ public class Evaluador {
     }
 
 
+    /**
+     * Evalúa a base de booleanos
+     *
+     * @param be
+     * @return SExpression
+     * @throws exceptionError
+     */
     public SExpression eval_con(SExpression be) throws exceptionError {
         // Implementacion de eval_con
 
@@ -91,6 +105,12 @@ public class Evaluador {
         }
     }
 
+    /**
+     * Evalúa a base de una lista
+     * @param list
+     * @return SExpression
+     * @throws exceptionError
+     */
     public SExpression evaluacion_list(SExpression list) throws exceptionError {
         // Implementacion de evaluacion_list
         if (list.es_nil())
@@ -101,10 +121,17 @@ public class Evaluador {
         return SExpression.cons(car, cdr);
     }
 
+    /**
+     * Aplica a una expresión
+     * @param funcion_primaria
+     * @param parametros_arg
+     * @return SExpression
+     * @throws exceptionError
+     */
     public SExpression apply(SExpression funcion_primaria, SExpression parametros_arg) throws exceptionError {
 
 
-        // Chequea si funcion_primaria tiene argumentos validos
+        // Chequea si funcion_primaria tiene argumentos válidos
         String nombre_funcion = funcion_primaria.nombre;
         String error_en_consola = checkIfValidArgs(nombre_funcion, parametros_arg);
         if (error_en_consola != null)
@@ -202,13 +229,13 @@ public class Evaluador {
         else if (defun_arg.car().cdr().isAtom())
             error_en_consola = "Parameters to the function cannot be an atom. **";
 
-            // Function body
+            // Cuerpo de la función
         else if (defun_arg.cdr().es_nil() || defun_arg.cdr().car().es_nil())
             error_en_consola = "Function body cannot be empty. **";
         else if (defun_arg.cdr().isAtom())
             error_en_consola = "Function body cannot be an atom. **";
 
-            // If the part after function body is not NIL, it cannot be evaluated.
+            // No se puede evaluar si "NIL" no existe
         else if (!defun_arg.cdr().cdr().es_nil())
             error_en_consola = "Unexpected expression " + " found after function body. **";
 
@@ -216,12 +243,13 @@ public class Evaluador {
     }
 
     public String checkIfValidArgs(String funcion_necesaria, SExpression argumentos) {
-        // Function to check if given functions had valid arguments
+        // Chequea si tiene argumentos válidos
 
         String error_en_consola = null;
         int argumentos_prim = countArgs(argumentos);
         String nombre_funcion = funcion_necesaria;
 
+        // Source: www.github.com/basic-LISP-functions
         if (funcion_necesaria.equals("PLUS") || funcion_necesaria.equals("MINUS") ||
                 funcion_necesaria.equals("TIMES") || funcion_necesaria.equals("QUOTIENT") ||
                 funcion_necesaria.equals("GREATER") || funcion_necesaria.equals("LESS") || funcion_necesaria.equals("REMAINDER"))
@@ -291,6 +319,11 @@ public class Evaluador {
         }
     }
 
+    /**
+     * Cuenta el número de argumentos
+     * @param exp
+     * @return contador
+     */
     public int countArgs(SExpression exp) {
         // CAR
         int contador = 0;

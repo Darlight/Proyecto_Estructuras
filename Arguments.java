@@ -3,8 +3,14 @@ Universidad del Valle de Guatemala
 Seccion - 10
 Autores:
 InterpreteLISP.java
-Proposito:
+Proposito: El propósito de esta clase es el encontrar y mandar los argumentos
+*/
+
+/**
+ * El propósito de esta clase es el encontrar y mandar los argumentos necesarios a las demás clases en
+ * el proyecto. Se basa en los Hashmaps y Arraylists
  */
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -18,6 +24,12 @@ public class Arguments {
     }
 
 
+    /**
+     * Get-ter de una lista. Más facil utilizarlo aquí.
+     * @param SExp
+     * @return
+     * @throws exceptionError
+     */
     public SExpression getVal(SExpression SExp) throws exceptionError {
         // Retorna el valor del atom
         String nombre = SExp.nombre;
@@ -30,6 +42,12 @@ public class Arguments {
     }
 
 
+    /**
+     * Get-ter de un Array
+     * @param argumentos
+     * @return
+     * @throws exceptionError
+     */
     public ArrayList<SExpression> getArgumentsAsList(SExpression argumentos) throws exceptionError {
         // Convierte Sexpresiones los paramatros como lista para agregar dentro de Arguments
         ArrayList<SExpression> parametros = new ArrayList<>();
@@ -44,6 +62,14 @@ public class Arguments {
     }
 
 
+    /**
+     * Guarda parámetros a una lista yá creada, y tiene cuidado con las no mutables.
+     *
+     * @param nombre_Funcion
+     * @param parametros_1
+     * @param argumentos
+     * @throws exceptionError
+     */
     public void addPairs(String nombre_Funcion, ArrayList<String> parametros_1, ArrayList<SExpression> argumentos) throws exceptionError{
         // Guarda paramatros formales respecto a las ya creadas. Se guardan en arguments
 
@@ -67,6 +93,11 @@ public class Arguments {
     }
 
 
+    /**
+     * Hace lo contrario a la clase pasada
+     *
+     * @param parametros_1
+     */
     public void destroyPairs(ArrayList<String> parametros_1){
         // Cuando funciona una funciona, destruye argumentos
         int tamano_Parametro = parametros_1.size();

@@ -7,6 +7,9 @@ BufferReader.java
 Proposito:
  */
 
+/**
+ * Solamente es el lector
+ */
 public class BufferReader {
     public static void main(String args[])throws Exception{
         FileReader fr = new FileReader("D:\\testout.txt");
