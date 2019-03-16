@@ -5,7 +5,18 @@ Autores:
 InterpreteLISP.java
 Proposito:
  */
+
+/**
+ * Clase parser y lectora de CDR y CAR
+ */
 public class Parser {
+    /**
+     * Primer parse. Identificador.
+     *
+     * @param inputBuffer
+     * @return e
+     * @throws exceptionError
+     */
     public SExpression parse(String inputBuffer) throws exceptionError {
 
         if (inputBuffer.isEmpty()) {
@@ -23,101 +34,70 @@ public class Parser {
         }
     }
 
-    public SExpression parseCdr(TraductorLISP t, boolean seenLeftBrace) throws exceptionError{
-        // For parsing cdr part of input expression
-        if(t.hasMoreTokens()){
-            if(t.isRightBrace()){
+    /**
+     * Parser para la parte CDR del programa
+     *
+     * @param t
+     * @param seenLeftBrace
+     * @return NIL de Table
+     * @throws exceptionError
+     */
+    public SExpression parseCdr(TraductorLISP t, boolean seenLeftBrace) throws exceptionError {
+        // Para parsear CDR
+        if (t.hasMoreTokens()) {
+            if (t.isRightBrace()) {
                 t.skip();
-                // Decrement count of open brace
+                // Decrementa el tamaño del Brace
                 t.count--;
-                // Left part is parsed and right brace occurs which means it is NIL
+                // La parte izquierda se parsea, por lo que es NIL
                 return SExpression.getTable("NIL");
-            }
-            else if(t.isDot()){
-                if(seenLeftBrace){
+            } else if (t.isDot()) {
+                if (seenLeftBrace) {
                     t.skip();
 
-                    // A dot means rest of the part is cdr part of the SExpression
-                    // It can be an integer, symbolic atom or a new non-atomic Sexpression so call parseCar to parse it
+
+                    // El punto significa que todo lo que le sigue es la parte CDR de la expresión. También puede existir como un int
                     SExpression cdr = parseCar(t, false);
 
-                    // Once the cdr brace occurs, return the above cdr expression
-                    if(t.hasMoreTokens() && t.isRightBrace()){
+
+                    // Cuando termina el CDR, se hace un return a ello
+                    if (t.hasMoreTokens() && t.isRightBrace()) {
                         t.skip();
-                        // Decrement count of open brace
+                        // Decrementa el tamaño del Brace
                         t.count--;
                         return cdr;
-                    }
-                    else{
-                        // If a right brace doesn't occur after parsing input after '.', input is invalid
+                    } else {
+                        // Si no pasa el Brace derecho después de detectar un punto, entonces es inválido el utilizar este input.
                         throw new exceptionError("Error", "Parse");
                     }
-                }
-                else{
-                    // If a dot occurs without previously seen left brace, input is invalid
+                } else {
+                    // Si existe un punto, pero no había una parte izquierda, tira error
                     throw new exceptionError("Error", "Parse");
                 }
-            }
-            else{
-                // If no dot or right brace occurs, parse rest of the input as new input having both car and cdr
+            } else {
+                // Separación
                 SExpression car = parseCar(t, false);
                 SExpression cdr = parseCdr(t, false);
                 return new SExpression(car, cdr);
             }
-        }
-        else{
-            // If no more tokens left and still parseCdr is called, input is invalid
+        } else {
             throw new exceptionError("Error", "Parse");
         }
     }
-    /*
-    public SExpression parseCdr(TraductorLISP t, boolean s) throws exceptionError {
-        if (t.hasMoreTokens()) {
-            if (t.isRightBrace()) {
-                t.skip();
-
-                t.count--;
-                return SExpression.getTable("NIL");
-            } else if (t.isDot()) {
-                if (s) {
-                    t.skip();
-                    SExpression fr = parseCar(t, false);
-                    if (t.isRightBrace() && t.hasMoreTokens()) {
-                        t.skip();
-                        t.count--;
-                        return fr;
-                    } else {
-                        System.out.println("Error");
-
-                    }
-
-                } else {
-                    System.out.println("Error");
-                }
-            } else {
-                SExpression c1 = parseCar(t, false);
-                SExpression c2 = parseCdr(t, false);
-                return new SExpression(c1, c2);
-
-            }
-
-        }
-        else{
-            throw new exceptionError("error", "Parser");
-        }
-        return
-    }
-
-    */
 
 
-
-    
+    /**
+     * Parte CAR del código
+     * @param t
+     * @param seenLeftBrace
+     * @return NIL de Table
+     * @throws exceptionError
+     */
     public SExpression parseCar(TraductorLISP t, boolean seenLeftBrace) throws exceptionError {
 
         if (t.hasMoreTokens()) {
             if (t.isLeftBrace()) {
-                // Increment count of open brace
+                // Incrementa...
                 t.count++;
                 t.skip();
 
@@ -126,43 +106,41 @@ public class Parser {
                     return SExpression.getTable("NIL");
                 }
 
-                // Called with seenLeftBrace = true since a brace is seen
+                // Busca la parte izquierda
                 SExpression car = parseCar(t, true);
 
-                // Otherwise parse rest of the input as Cdr
+                // Encuentra si es CDR
                 if (t.hasMoreTokens()) {
                     SExpression cdr = parseCdr(t, true);
-
-                    // Form new Sexpression with returned Car and Cdr parts
                     return new SExpression(car, cdr);
                 }
 
                 return car;
 
             } else if (t.isRightBrace()) {
-                // Decrement count of open brace
+                // Decrementa...
                 t.count--;
                 if (seenLeftBrace) {
                     t.skip();
                     return SExpression.getTable("NIL");
                 } else {
-                    // If right brace occurs without a previously seen left brace, throw error
+                    // Error si no existe una parte izquierda
                     throw new exceptionError("Error", "Parse");
                 }
             } else if (t.isIdentifier()) {
-                // Return SExpression for corresponding identifier
+                // Retorna la expresión
                 SExpression SExp = t.getIdentifier();
                 return SExp;
             } else if (t.isInteger()) {
-                // Get SExpression for corresponding integer
+                // Integer para la expresión
                 SExpression SExp = t.getInteger();
                 return SExp;
             } else {
-                // If not symbol, integer, left brace or right brace with a previous seen left brace, input is invalid
+                // Error si las condiciones no funcionan
                 throw new exceptionError("Error", "Parse");
             }
         } else {
-            // If no more tokens left and still parseCar is called, input is invalid
+            // Inválido si existen más instrucciones pero no más tokens
             throw new exceptionError("Error", "Parse");
         }
     }

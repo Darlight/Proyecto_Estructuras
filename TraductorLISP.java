@@ -4,6 +4,11 @@ Estructura de datos - Seccion 10
 traductorLisp.java
 Proposito: Traduce la sintaxis de Lisp a String, ayuda al Parser
  */
+
+/**
+ * Traductor
+ */
+
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;

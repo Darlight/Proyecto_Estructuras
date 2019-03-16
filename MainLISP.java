@@ -8,6 +8,13 @@ Proposito:
  */
 import java.util.Scanner;
 
+/**
+ * Clase main, introducción al programa.
+ *
+ * Andrés Quan Littow       17652
+ * Mario Andrés
+ * Josué Sagastume
+ */
 
 public class MainLISP{
     public static void main(String[] args) {

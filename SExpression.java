@@ -7,6 +7,9 @@ InterpreteLISP.java
 Proposito:
  */
 
+/**
+ * Procesamiento principal del programa
+ */
 public class SExpression {
 
 
@@ -96,32 +99,70 @@ public class SExpression {
         car = c1;
         cdr = c2;
     }
-    //Recibe como parametros dos expresiones S las funciones basicas de aritmetica
+
+
+    /**
+     * Recibe como parametros dos expresiones S las funciones basicas de aritmética
+     * @param exp1
+     * @param exp2
+     * @return Valor
+     */
     public static SExpression suma(SExpression exp1, SExpression exp2){
         int valor = exp1.getValue() + exp2.getValue();
         return new SExpression(valor);
     }
 
+    /**
+     * Resta aritmética
+     * @param exp1
+     * @param exp2
+     * @return valor
+     */
     public static SExpression resta(SExpression exp1, SExpression exp2){
         int valor = exp1.getValue() - exp2.getValue();
         return new SExpression(valor);
     }
 
+    /**
+     * Multiplicación artimética
+     * @param exp1
+     * @param exp2
+     * @return valor
+     */
     public static SExpression multiplicar(SExpression exp1, SExpression exp2){
         int valor = exp1.getValue() * exp2.getValue();
         return new SExpression(valor);
     }
 
+    /**
+     * División aritmética
+     * @param exp1
+     * @param exp2
+     * @return valor
+     */
     public static SExpression dividir(SExpression exp1, SExpression exp2){
         int valor = exp1.getValue() / exp2.getValue();
         return new SExpression(valor);
     }
 
+    /**
+     * Remitente o residuo
+     * @param exp1
+     * @param exp2
+     * @return valor
+     */
     public static SExpression modulo(SExpression exp1, SExpression exp2){
         int valor = exp1.getValue() % exp2.getValue();
         return new SExpression(valor);
     }
     // Comparadores verificando sus valores
+
+    /**
+     * Crequeo lógico
+     * @param exp1
+     * @param exp2
+     * @return Table
+     */
     public static SExpression less(SExpression exp1, SExpression exp2) {
         if (exp1.getValue() < exp2.getValue())
             return getTable("T");
@@ -136,6 +177,12 @@ public class SExpression {
     //Recibe como parametros dos expresiones S las funciones basicas de aritmetica
 
 
+    /**
+     * Chequeo Lógico
+     * @param exp1
+     * @param exp2
+     * @return Table
+     */
     public static SExpression greater(SExpression exp1, SExpression exp2){
         if(exp1.getValue() > exp2.getValue())
             return getTable("T");
@@ -157,34 +204,47 @@ public class SExpression {
 
     }
 
+    // getter
     public SExpression car(){
         return this.car;
     }
 
+    // Getter
     public SExpression cdr(){
         return this.cdr;
     }
 
+    // Chequeo
     public boolean es_nil(){
         return tipo == 2 && nombre.equals("NLL");
     }
 
+    // Chequeo
     public boolean isT(){
         return tipo == 2 && nombre.equals("T");
     }
 
+    // Chequeo
     public boolean isAtom() {
         return tipo != 3;
     }
 
+    // Chequeo
     public boolean isInteger(){
         return tipo == 1;
     }
 
+    // Chequeo
     public boolean isSymbol(){
         return tipo == 2;
     }
 
+    /**
+     * Creador de expresiones
+     * @param c1
+     * @param c2
+     * @return SExpresión con C1, C2
+     */
     public static SExpression cons(SExpression c1, SExpression c2){
         return new SExpression(c1, c2);
     }

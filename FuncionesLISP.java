@@ -9,11 +9,14 @@ Proposito:
 import java.util.HashMap;
 import java.util.ArrayList;
 
+/**
+ * Clase básica para la implementación de las funciones LISP
+ */
 public class FuncionesLISP{
 
-    String nombreFuncion;
-    ArrayList<String> parametros;
-    SExpression cuerpoFuncion;
+    String nombreFuncion; // Nombre de una función
+    ArrayList<String> parametros; // Parámetros en una ArrayList
+    SExpression cuerpoFuncion; // Cuerpo de una función
 
     //Constructor
     public FuncionesLISP(String nombre, SExpression parametro, SExpression cuerpo) throws exceptionError{
@@ -22,7 +25,14 @@ public class FuncionesLISP{
         cuerpoFuncion = cuerpo;
     }
 
-    //Este metodo coniverte una lista SExpression a una lista de parametros
+
+
+    /**
+     * Este metodo coniverte una lista SExpression a una lista de parametros
+     * @param parametro
+     * @return
+     * @throws exceptionError
+     */
     public static ArrayList<String> getListaParametros(SExpression parametro) throws exceptionError {
         //Crea una variable ArrayList para ingresar los parametros
         ArrayList<String> parametros = new ArrayList<String>();
