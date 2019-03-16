@@ -1,4 +1,3 @@
-import java.util.*;
 /*
 Universidad del Valle de Guatemala
 Seccion - 10
