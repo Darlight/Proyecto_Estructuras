@@ -2,15 +2,19 @@
 Universidad del Valle de Guatemala
 Seccion - 10
 Autores:
+Andrés Quan Littow       17652
+Mario Andrés             18029
+Josué Sagastume          18173
 FuncionesLISP.java
-Proposito:
  */
 
 import java.util.HashMap;
 import java.util.ArrayList;
 
 /**
- * Clase básica para la implementación de las funciones LISP
+ * Clase básica para la implementación de las funciones LISP.
+ * Esta clase almacena la función definida por el usuario como objetos. Tiene nombre,
+ * Parámetros formales como una lista y cuerpo de la función como S-Expresión.
  */
 public class FuncionesLISP{
 
@@ -18,6 +22,13 @@ public class FuncionesLISP{
     ArrayList<String> parametros; // Parámetros en una ArrayList
     SExpression cuerpoFuncion; // Cuerpo de una función
 
+    /**
+     * Constructor de las Funciones del usuario
+     * @param nombre Nombre de la funcion
+     * @param parametro Una SExpression
+     * @param cuerpo instrucciones
+     * @throws exceptionError exceptuando cuando haya caracteres indefinidos
+     */
     //Constructor
     public FuncionesLISP(String nombre, SExpression parametro, SExpression cuerpo) throws exceptionError{
         nombreFuncion = nombre;

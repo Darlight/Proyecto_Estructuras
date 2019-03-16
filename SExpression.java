@@ -2,13 +2,22 @@
 Universidad del Valle de Guatemala
 Seccion - 10
 Autores:
-InterpreteLISP.java
-Proposito:
+Andrés Quan Littow       17652
+Mario Andrés             18029
+Josué Sagastume          18173
+SExpression.java
  */
 
 /**
- * Procesamiento principal del programa
+ * Procesamiento principal del programa. Esta clase define, representa la expresión lisp analizada, en memoria.
+ * Cada expresión S tiene un tipo: 1 entero, 2 simbólico, 3 no atómico
+ * En caso de que el tipo sea un átomo entero, el valor debe ser el correspondiente
+ * entero se almacena en int val. Para los átomos simbólicos, la variable del nombre contiene
+ * El nombre de la variable. Si es una S-Expresión no atómica, entonces izquierda y derecha
+ * Las variables apuntan a los nodos hijos izquierdo y derecho respectivamente,
+ * De lo contrario son nulos.
  */
+import java.util.*;
 public class SExpression {
 
 
@@ -52,6 +61,10 @@ public class SExpression {
     // En este caso se uso un map tipo Hashtable para poder determina diferentes tipos
     //de datos que se identificaran al momento de leer el archivo .txt
 
+    /**
+     * @param Id Key para identificar el tipo de SExpression
+     * @return
+     */
     public static SExpression getTable(String Id){
         if(idValores.containsKey(Id)){
             return idValores.get(Id);
@@ -62,12 +75,20 @@ public class SExpression {
             return SExp;
         }
     }
+
+    /**
+     * @param numero Valor de un tipo Integer
+     */
     // Crea S-Expressiones de tipo entero
     public SExpression(int numero){
         tipo_de_nodo = 1;
         valor = numero;
     }
 
+    /** Despliega los valores iniciales de los SExpressions
+     *
+     * @return
+     */
     public String displayTree(){
         String displayString = "";
         if(tipo == 1){
@@ -80,6 +101,9 @@ public class SExpression {
         return displayString;
     }
 
+    /**
+     * Solo imprime la expression
+     */
     public void printSExpression(){
         String output = displayTree();
         System.out.println("> " + output);

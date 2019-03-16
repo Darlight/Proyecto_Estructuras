@@ -12,8 +12,8 @@ import java.util.Scanner;
  * Clase main, introducción al programa.
  *
  * Andrés Quan Littow       17652
- * Mario Andrés
- * Josué Sagastume
+ * Mario Andrés             18029
+ * Josué Sagastume          18173
  */
 
 public class MainLISP{

@@ -2,8 +2,10 @@
 Universidad del Valle de Guatemala
 Seccion - 10
 Autores:
-InterpreteLISP.java
-Proposito: El propósito de esta clase es el encontrar y mandar los argumentos
+Andrés Quan Littow       17652
+Mario Andrés             18029
+Josué Sagastume          18173
+Arguments.java
 */
 
 /**
@@ -14,10 +16,18 @@ Proposito: El propósito de esta clase es el encontrar y mandar los argumentos
 import java.util.HashMap;
 import java.util.ArrayList;
 
+/**
+ * Esta clase mantiene una estructura de argumentos. Almacena la lista de argumentos reales mientras que
+ * La función se está ejecutando. Una vez realizada la ejecución, se eliminan esos parámetros.
+ * desde el hashmap. Hashmap almacena una lista para cada parámetro, ya que puede haber múltiples ámbitos.
+ */
 public class Arguments {
     // HashMap como arguments
     HashMap<String, ArrayList<SExpression>> arguments = new HashMap<>();
 
+    /**
+     * Constructor de Arguments
+     */
     // Un constructor vacio que solo contenga el hashmap
     public Arguments() {
 
@@ -26,8 +36,8 @@ public class Arguments {
 
     /**
      * Get-ter de una lista. Más facil utilizarlo aquí.
-     * @param SExp
-     * @return
+     * @param SExp Una SExpression de cualquier tipo
+     * @return Un SExpression
      * @throws exceptionError
      */
     public SExpression getVal(SExpression SExp) throws exceptionError {
@@ -44,8 +54,8 @@ public class Arguments {
 
     /**
      * Get-ter de un Array
-     * @param argumentos
-     * @return
+     * @param argumentos de una funcioon
+     * @return Un ArrayList de SExpresisones
      * @throws exceptionError
      */
     public ArrayList<SExpression> getArgumentsAsList(SExpression argumentos) throws exceptionError {

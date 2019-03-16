@@ -2,19 +2,24 @@
 Universidad del Valle de Guatemala
 Seccion - 10
 Autores:
-InterpreteLISP.java
-Proposito:
+Andrés Quan Littow       17652
+Mario Andrés             18029
+Josué Sagastume          18173
+Parser.java
  */
 
 /**
- * Clase parser y lectora de CDR y CAR
+ * Clase parser y lectora de CDR y CAR.
+ * Define métodos para leer un código lisp y convertirlo en el correspondiente obj SExp.
+ * Utiliza el método de descenso recursivo para analizar la S-Expresión
+ * El manejo de errores se realiza y se devuelven los mensajes de error apropiados en caso de que
  */
 public class Parser {
     /**
      * Primer parse. Identificador.
      *
-     * @param inputBuffer
-     * @return e
+     * @param inputBuffer TZT
+     * @return e Una SExpresion
      * @throws exceptionError
      */
     public SExpression parse(String inputBuffer) throws exceptionError {
@@ -37,8 +42,8 @@ public class Parser {
     /**
      * Parser para la parte CDR del programa
      *
-     * @param t
-     * @param seenLeftBrace
+     * @param t Traductor LISP
+     * @param seenLeftBrace Parentesis izquierdo del .txxt
      * @return NIL de Table
      * @throws exceptionError
      */
@@ -88,8 +93,8 @@ public class Parser {
 
     /**
      * Parte CAR del código
-     * @param t
-     * @param seenLeftBrace
+     * @param t TraductorLISP
+     * @param seenLeftBrace Parentesis derecho, donde identifica el list.
      * @return NIL de Table
      * @throws exceptionError
      */

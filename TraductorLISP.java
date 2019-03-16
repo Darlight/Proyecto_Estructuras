@@ -1,17 +1,25 @@
 /*
 Universidad del Valle de Guatemala
-Estructura de datos - Seccion 10
-traductorLisp.java
+Seccion - 10
+Autores:
+Andrés Quan Littow       17652
+Mario Andrés             18029
+Josué Sagastume          18173
+TraductorLISP.java
 Proposito: Traduce la sintaxis de Lisp a String, ayuda al Parser
  */
 
-/**
- * Traductor
- */
 
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
+/**
+ *Esta es una clase auxiliar para extraer tokens de la entrada.
+ * Primero, reemplaza todo tipo de espacios (múltiples, espacios en blanco, etc.)
+ * Más tarde, inserta espacios antes y después - '(', ')', '.'
+ * Ahora, después de dividir en un solo espacio (''), se obtienen los tokens.
+ */
 class TraductorLISP{
     //Crear getters y setters
     String inputLine;
@@ -22,6 +30,9 @@ class TraductorLISP{
     boolean symbolLimite;
     int count;
 
+    /**
+     * @param input El String que contenga el contenido extraido del archivo.txt
+     */
     public TraductorLISP(String input){
         inputLine = input;
 
@@ -50,6 +61,10 @@ class TraductorLISP{
         // Cantidad de nodos
         count = 0;
     }
+
+    /**Esta funciona define un matcher de un patron, para determinar la longitud del dato con patrones similiares.
+     * @return Un identificador
+     */
     // Referencia
     // https://www.tutorialspoint.com/javaregex/javaregex_pattern_compile.htm
     public boolean isIdentifier(){
@@ -58,6 +73,10 @@ class TraductorLISP{
         return matchIdentifier.matches();
     }
 
+    /**
+     * @return Se ovtiene el identificador
+     * @throws exceptionError Exceptuando cuuando supera el limite de 20
+     */
     // Utiliza el token actual como patron
     public SExpression getIdentifier() throws exceptionError{
         String identifier = tokens[currentToken];
@@ -70,6 +89,9 @@ class TraductorLISP{
         return SExpression.getTable(identifier);
     }
 
+    /**
+     * @return Retorna el token de un ATOM tipo entero
+     */
     // Revisa si es un entero
     public boolean isInteger(){
         // Compara patrones de enteros utilizando signos de suma o resta
@@ -77,6 +99,10 @@ class TraductorLISP{
         return matchInteger.matches();
     }
 
+    /**
+     * @return Retorna el Token tipo Entero
+     * @throws exceptionError Exceptuando cuando supera el limite de 20 numeros
+     */
     // Consigue el entero del token actual
     public SExpression getInteger() throws exceptionError {
         String num = tokens[currentToken];
@@ -89,34 +115,52 @@ class TraductorLISP{
         return new SExpression(Integer.parseInt(num));
     }
 
+    /**
+     * @return Returna valores expresados con un punto
+     */
     // Revisa si es un punto
     public boolean isDot(){
         return tokens[currentToken].equals(".");
     }
 
+    /**
+     * @return Identifica si es el parentesis izquierdo dentro de una instruccion.
+     */
     // Revisa si es un nodo izquierdo del arbol
     public boolean isLeftBrace(){
 
         return tokens[currentToken].equals("(");
     }
 
+    /**
+     * @return Identifica si es el parentesis derecho para finalzar de guardar una instruccion
+     */
     // Revisa si es un nodo derecho del arbol
     public boolean isRightBrace(){
 
         return tokens[currentToken].equals(")");
     }
 
+    /**
+     * @return Retorna la cantidad de token locales con la cantidad creada globalmente
+     */
     // Revisa si hay mas tokens que deberan ser enviado por el Parser
     public boolean hasMoreTokens(){
         return currentToken < num_tokens;
     }
 
 
+    /**
+     * SOlo le da skip a un token
+     */
     // Salta el token actual
     public void skip(){
         currentToken++;
     }
 
+    /**
+     * @return Revisa carateres extranios dentro de una .txt
+     */
     // Revisas caracteres invalidos
     public String checkIfInvalid(){
         String found = null;
@@ -130,6 +174,9 @@ class TraductorLISP{
         return found;
     }
 
+    /**
+     * @return Chequea las instrucciones sean palabras con capitales mayusuclas
+     */
     // Revisa si estan con letra minusculas
     public String checkIfLowerCase(){
         String found = null;
@@ -143,6 +190,9 @@ class TraductorLISP{
         return found;
     }
 
+    /**
+     * @return Retorna un mensaje identificado que tipo de error cometio el usuario
+     */
     public String getError(){
         String error;
         if(!hasMoreTokens()){

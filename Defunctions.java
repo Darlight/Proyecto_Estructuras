@@ -2,15 +2,20 @@
 Universidad del Valle de Guatemala
 Seccion - 10
 Autores:
-InterpreteLISP.java
+Andrés Quan Littow       17652
+Mario Andrés             18029
+Josué Sagastume          18173
+Defunctions.java
 Proposito:
  */
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Clase que utiliza la implementación de un Hashmap para poder participar en
- * el procesamiento de daots
+ * el procesamiento de daots. Almacena la función definida por el usuario como objetos. Tiene nombre,
+ * Parámetros formales como una lista y cuerpo de la función como S-Expresión.
  */
 public class Defunctions{
     // Un hashmap que contenga las funciones del usuario
@@ -21,8 +26,8 @@ public class Defunctions{
     /**
      * Agrega una función en el Hashmpa con el key y sus funciones
      *
-     * @param functionName
-     * @param function
+     * @param functionName Nombre de la funcion
+     * @param function Lo que el usuario programa para tal funcion
      */
     public static void addFunction(String functionName, FuncionesLISP function){
         defunctions.put(functionName, function);
@@ -31,9 +36,9 @@ public class Defunctions{
     /**
      * Retorna una funcion
      *
-     * @param functionName
+     * @param functionName Nombre de la funcion
      * @return
-     * @throws exceptionError
+     * @throws exceptionError En caso de que no se acepta valores invalidos
      */
     public static FuncionesLISP getFunction(String functionName) throws exceptionError{
         FuncionesLISP defun = null;

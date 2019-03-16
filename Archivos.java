@@ -8,6 +8,10 @@ import java.io.*;
  */
 public class Archivos {
 
+    /**
+     * @param direccion El path que contenga el programa LISP en .txt
+     * @return Devuelve un string extraido del contenido del archivvo .txt.
+     */
     //Metodo encargado de leer archivos de texto
     //Recibe como parametro la direccion en la que se encuentra
     //el archivo que se desea leer

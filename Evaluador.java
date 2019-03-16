@@ -1,9 +1,24 @@
 import java.util.ArrayList;
-
+/*
+Universidad del Valle de Guatemala
+Seccion - 10
+Autores:
+Andrés Quan Littow       17652
+Mario Andrés             18029
+Josué Sagastume          18173
+Evaluador.java
+Proposito:
+ */
+/**
+ *Esta clase contiene funciones para la evaluación del árbol de expresión-s
+ */
 public class Evaluador {
     Arguments aL;//ArgumentList
 
-    // Contructor 
+    /**
+     * Constructor del evaluador creando una clase con argumentos
+     */
+    // Contructor
     public Evaluador() {
         aL = new Arguments();
     }
@@ -11,9 +26,9 @@ public class Evaluador {
     /**
      * Identifica, o "Evalúa" una expresión
      *
-     * @param exp
-     * @return
-     * @throws exceptionError
+     * @param exp Una expresion
+     * @return Devuelve una SExpresiion
+     * @throws exceptionError Exceptuando cuando ingrese valores diferentes de ATOM,T, NIL o Integer.
      */
     public SExpression eval(SExpression exp) throws exceptionError {
 
@@ -79,9 +94,9 @@ public class Evaluador {
     /**
      * Evalúa a base de booleanos
      *
-     * @param be
+     * @param be Una SExpression de forma Booleana
      * @return SExpression
-     * @throws exceptionError
+     * @throws exceptionError Difernte de un Booleano
      */
     public SExpression eval_con(SExpression be) throws exceptionError {
         // Implementacion de eval_con
@@ -107,7 +122,7 @@ public class Evaluador {
 
     /**
      * Evalúa a base de una lista
-     * @param list
+     * @param list Una list de expresiones
      * @return SExpression
      * @throws exceptionError
      */
@@ -123,10 +138,10 @@ public class Evaluador {
 
     /**
      * Aplica a una expresión
-     * @param funcion_primaria
-     * @param parametros_arg
-     * @return SExpression
-     * @throws exceptionError
+     * @param funcion_primaria Nombre de la funcion
+     * @param parametros_arg Sus parametros
+     * @return SExpression Devuelve el valor despues de evaluar la funcion
+     * @throws exceptionError Exceptuando valores diferntes de aritmeticas, mayor, menor, cdr y car.
      */
     public SExpression apply(SExpression funcion_primaria, SExpression parametros_arg) throws exceptionError {
 
@@ -208,6 +223,10 @@ public class Evaluador {
 
     // Chequea por argumentos ovalidos
 
+    /**
+     * @param defun_arg Una funcion con sus argumentos
+     * @return Devuelve un error o un mensaje dependiedo su condicion
+     */
     public String checkIfValidDefun(SExpression defun_arg) {
         String error_en_consola = null;
 
@@ -321,7 +340,7 @@ public class Evaluador {
 
     /**
      * Cuenta el número de argumentos
-     * @param exp
+     * @param exp la expresion
      * @return contador
      */
     public int countArgs(SExpression exp) {
