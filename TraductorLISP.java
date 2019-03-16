@@ -7,7 +7,7 @@ Proposito: Traduce la sintaxis de Lisp a String, ayuda al Parser
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-class TraductorLisp{
+class TraductorLISP{
     //Crear getters y setters
     String inputLine;
     int num_tokens;
@@ -15,9 +15,9 @@ class TraductorLisp{
     String[] tokens;
     boolean intLimite;
     boolean symbolLimite;
-    int countBrace;
+    int count;
 
-    public TraductorLisp(String input){
+    public TraductorLISP(String input){
         inputLine = input;
 
         // Reemplaza todos los parentesis con un espacio por cada lista de Lisp
@@ -43,7 +43,7 @@ class TraductorLisp{
         symbolLimite = false;
 
         // Cantidad de nodos
-        countBrace = 0;
+        count = 0;
     }
     // Referencia
     // https://www.tutorialspoint.com/javaregex/javaregex_pattern_compile.htm
@@ -108,7 +108,7 @@ class TraductorLisp{
 
 
     // Salta el token actual
-    public void skipToken(){
+    public void skip(){
         currentToken++;
     }
 
@@ -141,7 +141,7 @@ class TraductorLisp{
     public String getError(){
         String error;
         if(!hasMoreTokens()){
-            if(countBrace > 0)
+            if(count > 0)
                 error = "Falta el parentesis derecho.**";
             else
                 error = "Expresion de input terminado inesperadamente.**";
