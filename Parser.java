@@ -9,7 +9,7 @@ public class Parser {
     public SExpression parse(String inputBuffer) throws exceptionError {
 
         if (inputBuffer.isEmptu()) {
-            throw new customException("No valido. ");
+            throw new exceptionError("No valido. ");
 
         } else {
             Tokenizer t = new Tokenizer(inputBuffer);
@@ -17,7 +17,7 @@ public class Parser {
             SExpression e = parseCar(tokenizer, false);
 
             if (tokenizer.hasMoreTokens()) {
-                throw new customException("Error");
+                throw new exceptionError("Error");
             }
             return e;
         }
