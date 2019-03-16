@@ -12,7 +12,11 @@ public class SExpression {
 
     private boolean es_nil = false; // Null de LISP
     private SExpression car, cdr; // Valores de ningun atom
-
+    int tipo_de_nodo =0; // Que tipo de nodo sera creado
+    int valor=0; // Valor de atomos de enteros
+    boolean isNIL =false; // Null de LISP
+    String nombre = ""; // Valor de atomos simbolicos
+    int tipo = 0;
     // Hashtable que contenga funciones y valores
     // En este caso se uso un map tipo Hashtable para poder determina diferentes tipos
     //de datos que se identificaran al momento de leer el archivo .txt
@@ -41,11 +45,7 @@ public class SExpression {
         es_nil = newboolean;
     }
 
-    int tipo_de_nodo =0; // Que tipo de nodo sera creado
-    int valor=0; // Valor de atomos de enteros
-    boolean isNIL =false; // Null de LISP
-    String nombre = ""; // Valor de atomos simbolicos
-    int tipo = 0;
+
     // Hashtable que contenga funciones y valores
     // En este caso se uso un map tipo Hashtable para poder determina diferentes tipos
     //de datos que se identificaran al momento de leer el archivo .txt
